@@ -9,6 +9,9 @@
  *
  */
 #include "robot.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
  * main()
@@ -19,11 +22,32 @@
  * 
  * @returns nothing.
  */
+
+int isNumber(char number[]){
+  int i;
+  for(i = 0; i < strlen(number); i++){
+	if(!isdigit(number[i])){
+	  return 1; 
+	}
+  }
+  return 0;
+}
+
 int main(int argc, const char * argv[])
 {
-  robotPrintAscii();
-  dalekPrintAscii();
-  robotPrintMessage();
+  if (argc == 2){
+	if(isNumber(argv[1]) == 0){
+	  robotPrintAscii();
+ 	  dalekPrintAscii();
+  	  robotPrintMessage();
+	}
+	else{
+	  printf("Your second argument isn't a number.");
+	}
+  }
+  else{
+   robotPrintAscii();
+  }
 
   return 0;
 }
